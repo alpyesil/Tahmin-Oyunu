@@ -1,47 +1,62 @@
-﻿using System;
 
-namespace TahminV2
+using System;
+
+namespace Çalışma
 {
     class Program
     {
         static void Main(string[] args)
         {
 
-            Random rastgele = new Random();
-            int tahmin, sayi = rastgele.Next(1, 100);
-            int sayac = 7;
-            int say = 0;
+            //0 ile 100 arasında önceden sabit olarak girilmiş bir sayıyı, kullanıcının kaç kerede tahmin ettiğini gösteren tahmin oyununu C# konsol uygulaması ile yazın.
+            //7 tahminde sayıyı bilemezse oyun bitsin.
+            //Kullanıcı, tutulan sayıyı bulması için yönlendirilsin;
+            //Tutulan sayıdan daha büyük bir sayı girilmişse “Daha küçük bir sayı girin” yazsın.
+            //Tutulan sayıdan daha küçük bir sayı girilmişse “Daha büyük bir sayı girin” yazsın.
+
+
+            Random rnd = new Random();
+            int sayi = rnd.Next(1, 100);
+            int hak = 0;
+            int sayac = 0;
+            int tahmin = 0;
+            int yeter = 7;
 
             do
             {
-                sayac = sayac - 1;
-                say = say + 1;
-                Console.Write("Lütfen sayınızı girin: " );
+                yeter = yeter - 1;
+                sayac = sayac + 1;
+                hak = hak + 1 ;
+                Console.Write("1-100 arası tahminini gir: ");
                 tahmin = int.Parse(Console.ReadLine());
 
-                if (tahmin < sayi && say < 7)
+                if (tahmin < sayi && hak < 7)
                 {
-                    Console.Write("Kalan Hak: " + sayac + "\n" + "Daha büyük bir sayı girin!" + "\n\n");
+                    Console.Write("Kalan Hak: " + yeter + "\n" + "Daha büyük bir sayı girin!" + "\n\n");
                 }
-                else if (tahmin > sayi && say < 7)
+                else if (tahmin > sayi && hak < 7)
                 {
-                    Console.Write("Kalan Hak: " + sayac + "\n" + "Daha küçük bir sayı girin!" + "\n\n");
+                    Console.Write("Kalan Hak: " + yeter + "\n" + "Daha küçük bir sayı girin!" + "\n\n");
                 }
 
-            } while (tahmin != sayi && say < 7);
+            } while (tahmin != sayi && hak < 7);
 
             if (tahmin == sayi)
             {
-                Console.WriteLine("Kazandınız");
+                Console.Write("KAZANDIN");
             }
-            else
+            else if (hak <= 7)
             {
-                Console.WriteLine("Game Over");
+                Console.Write("Game Over");
             }
+
+
             Console.ReadKey();
 
-
-
         }
+
+
+
+
     }
 }
